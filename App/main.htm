@@ -10,8 +10,8 @@
     <div id = "main" ng-controller="mainController">
         <form action="" ng-submit="post()">
             <input required type="text" name="" placeholder="Kalyani Singh" ng-model="newPost.created_by">
-            <textarea name="" id="" maxlength = "200" cols="30" rows="3" placeholder="SUNY Potsdam" ng-model="newPost.text">
-
+            <textarea required name="" id="" maxlength = "200" cols="30" rows="3" placeholder="SUNY Potsdam" 
+            ng-model="newPost.text">
             </textarea>
             <input class = "button" type="submit" value="Chirp!" id="">
         </form>
