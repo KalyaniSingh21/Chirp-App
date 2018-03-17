@@ -2,14 +2,17 @@
 
 <html>
  <head>
-     <script></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+     <script src="javascripts/ChirpApp.js"></script>
      <title>Chirp App</title>
  </head>
-<body>
-    <div id = "main">
-        <form action="">
-            <input type="text" name="" placeholder="Kalyani Singh">
-            <textarea name="" id="" maxlength = "200" cols="30" rows="3" placeholder="SUNY Potsdam"></textarea>
+<body ng-app = "ChirpApp">
+    <div id = "main" ng-controller="mainController">
+        <form action="" ng-submit="post()">
+            <input required type="text" name="" placeholder="Kalyani Singh" ng-model="newPost.created_by">
+            <textarea name="" id="" maxlength = "200" cols="30" rows="3" placeholder="SUNY Potsdam" ng-model="newPost.text">
+
+            </textarea>
             <input class = "button" type="submit" value="Chirp!" id="">
         </form>
 
