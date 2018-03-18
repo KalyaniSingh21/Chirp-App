@@ -1,20 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <script src="javascripts/ChirpApp.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="stylesheet/style.css">
-    <title>Register To Chirp</title>
+    <title>Login to Chirp</title>
 </head>
 <body ng-app="ChirpApp">
     <div id="main" class="container" ng-controller="authController">
-        <form class="form-auth" ng-submit="register()">
-            <h2>Register</h2>
+        <form class="form-auth" ng-submit="login()">
+            <h2>Login</h2>
             <p class="text-warning" >{{error_message}}</p>
             <input type="username" ng-model="user.username" placeholder="Usename" class="form-control"><br>
             <input type="password" ng-model="user.password" placeholder="Password" class="form-control"><br>
-            <input type="submit" value="Register" class="btn btn-primary">
+            <input type="submit" value="Login" class="btn btn-primary">
         </form>
 
     </div>
