@@ -2,30 +2,39 @@
 
 <html>
  <head>
+     <title>Chirp App</title>
      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
      <script src="javascripts/ChirpApp.js"></script>
-     <title>Chirp App</title>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+     <link rel="stylesheet" href="stylesheet/style.css">
  </head>
 <body ng-app = "ChirpApp">
-    <div id = "main" ng-controller="mainController">
-        <form action="" ng-submit="post()">
-            <input required type="text" name="" placeholder="Kalyani Singh" ng-model="newPost.created_by">
-            <textarea required name="" id="" maxlength = "200" cols="30" rows="3" placeholder="SUNY Potsdam" 
-            ng-model="newPost.text">
+    <div id = "main" class = "container " ng-controller="mainController">
+      
+        <div class="col-md-8 col-md-offset-2 justify-content-center ">
+        <div class="clearfix">
+        <form ng-submit="post()">
+            <input required type="text" class = "form-control" placeholder="Kalyani Singh" ng-model="newPost.created_by">
+            <textarea required maxlength = "200" rows="3" class="form-control" placeholder="SUNY Potsdam" ng-model="newPost.text">
             </textarea>
-            <input class = "button" type="submit" value="Chirp!" id="">
+            <input class = "btn submit-btn pull-right" type="submit" value="Chirp!">
         </form>
 
         <div id = "post-stream">
-            <h4>Chirp Feed</h4>
+            <h2 class="h2">Chirp Feed</h2>
             <div class="post" ng-repeat="post in posts | orderBy : 'created_at':true" ng-class-odd="'odd'"
                  ng-class-even="'even'">
                  <p>
-                     {{post.created_by}} says {{post.text}} at {{post.created_at}}
+                    <h4>{{post.text}}</h4>
+                    <small>Posted by @ {{post.created_by}}</small> 
+                    <small class="pull-right"> {{post.created_at | date: "h:mma 'on' MMM d,y"}}</small>
+  
                  </p>
 
             </div>
         </div>
+    </div>
+    </div>
     </div>
     
 </body>
