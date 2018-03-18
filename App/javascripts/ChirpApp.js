@@ -12,6 +12,22 @@ app.controller("mainController", function($scope){
         $scope.newPost = {created_by:'', text:'', created_at:''};
 
     };
-
     
+});
+
+app.controller("authController", function($scope){
+    $scope.user = { username : '', password : ''};
+    $scope.error_message = '';
+
+    postService.getAll().success(function(data){
+        $scope.posts = data;
+    });
+
+    $scope.login = function(){
+        $scope.error_message = 'login request for ' + $scope.user.username;
+    };
+
+    $scope.regiter = function(){
+        $scope.error_message = 'registration request for ' + $scope.user.username;
+    };
 });
