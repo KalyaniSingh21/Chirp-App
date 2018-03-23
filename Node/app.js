@@ -7,8 +7,9 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var session = require('express-session');
 var api = require('./routes/api');
-//var authentication = require('./routes/authentication');
+var authentication = require('./routes/authentication');
 
+var initPassport = require('./passport-init');
 var app = express();
 
 // view engine setup
@@ -29,8 +30,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize()); //order matters
 app.use(passport.session());
+
+initPassport(passport);
+
 app.use('/api', api);
-//app.use('/auth', authenticate);
+app.use('/auth', authenticate);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

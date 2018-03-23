@@ -10,12 +10,12 @@ module.exports = function(passport){
 	passport.serializeUser(function(user, done) {
 		console.log('serializing user:',user.username);
 		//return the unique id for the user
-		done(null, user.username);
+		return done(null, user.username);
 	});
 
 	//Desieralize user will call with the unique id provided by serializeuser
 	passport.deserializeUser(function(username, done) {
-
+		//return the user object
 		return done(null, users[username]);
 
 	});
@@ -27,12 +27,13 @@ module.exports = function(passport){
 
 			if(!users[username]){
 				console.log('User Not Found with username '+username);
-				return done(null, false);
+				return done('User not found', false);
 			}
 
+			//check if valid password
 			if(isValidPassword(users[username], password)){
 				//sucessfully authenticated
-				return done(null, users[username]);
+				return done('Login successful', users[username]);
 			}
 			else{
 				console.log('Invalid password '+username);
