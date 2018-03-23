@@ -19,13 +19,15 @@ app.set('view engine', 'ejs');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(session({
-    secret: 'super duper secret'
+    secret: 'Bugger, I am Salt!',
+    resave: false,
+    saveUninitialized: false
 }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(passport.initialize());
+app.use(passport.initialize()); //order matters
 app.use(passport.session());
 app.use('/api', api);
 //app.use('/auth', authenticate);
