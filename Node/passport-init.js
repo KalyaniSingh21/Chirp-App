@@ -31,14 +31,13 @@ module.exports = function(passport){
 			}
 
 			//check if valid password
-			if(isValidPassword(users[username], password)){
-				//sucessfully authenticated
-				return done('Login successful', users[username]);
-			}
-			else{
+			if(!isValidPassword(users[username], password)){
+				
 				console.log('Invalid password '+username);
-				return done(null, false)
+				return done(null, false);
 			}
+			//sucessfully authenticated
+			return done('Login successful', users[username]);
 		}
 	));
 
