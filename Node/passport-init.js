@@ -24,9 +24,9 @@ module.exports = function(passport){
 			passReqToCallback : true
 		},
 		function(req, username, password, done) { 
-
+			console.log("inside login p-int");
 			if(!users[username]){
-				console.log('User Not Found with username '+username);
+				console.log('User Not Found with username '+ username);
 				return done('User not found', false);
 			}
 
@@ -37,6 +37,8 @@ module.exports = function(passport){
 				return done(null, false);
 			}
 			//sucessfully authenticated
+			console.log("sucessfully authenticated");
+
 			return done('Login successful', users[username]);
 		}
 	));
