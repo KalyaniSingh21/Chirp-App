@@ -9,7 +9,7 @@ var passport = require('passport');
 var api = require('./routes/api');
 var authenticate = require('./routes/authentication')(passport);
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/chirt-test');
+mongoose.connect('mongodb://localhost/chirp-test');
 
 var app = express();
 

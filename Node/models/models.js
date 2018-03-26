@@ -9,7 +9,7 @@ var userSchema = new mongoose.Schema({
 var postSchema = new mongoose.Schema({
     text: String,
     created_by : String,
-    created_at : {type : Date, default: Date,now}
+    created_at : {type : Date, default: Date.now}
 });
 
 //prepare a model

@@ -11,15 +11,24 @@ module.exports = function(passport){
 	// Passport needs to be able to serialize and deserialize users to support persistent login sessions
 	// Passport needs to be able to serialize and deserialize users to support persistent login sessions
 	passport.serializeUser(function(user, done) {
-		console.log('serializing user:',user.username);
+		console.log('serializing user:',user._id);
 		//return the unique id for the user
-		return done(null, user.username);
+		return done(null, user._id);
 	});
 
 	//Desieralize user will call with the unique id provided by serializeuser
-	passport.deserializeUser(function(username, done) {
-		//return the user object
-		return done(null, users[username]);
+	passport.deserializeUser(function(id, done) {
+		User.findById(id,function(err, user){
+			if(err){
+				return done(err, false);
+			}
+			if(!user){
+				return('user not found',false);
+			}
+
+			return done(null, user);
+
+		});
 
 	});
 
@@ -27,22 +36,23 @@ module.exports = function(passport){
 			passReqToCallback : true
 		},
 		function(req, username, password, done) { 
-			console.log("inside login p-int");
-			if(!users[username]){
-				console.log('User Not Found with username '+ username);
-				return done('User not found', false);
-			}
+			
+			User.findOne({username : username}, function(err, user){
+				if(err){
+					return done(err, false);
+				}
 
-			//check if valid password
-			if(!isValidPassword(users[username], password)){
+				if(!user){
+					return done('User :'+username+' not found', false);
+				}
 				
-				console.log('Invalid password '+username);
-				return done(null, false);
-			}
-			//sucessfully authenticated
-			console.log("sucessfully authenticated");
+				if(!isValidPassword(user, password)){
+					return done('Incorrect Password', false);
+				}
 
-			return done('Login successful', users[username]);
+				return done(null, user);
+
+			});
 		}
 	));
 
